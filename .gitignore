@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.local
+*.log
+.DS_Store
+Thumbs.db
+
+# Local tooling / IDE (not part of this app)
+.sfdx/

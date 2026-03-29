@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App Idea Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="bg-mesh" aria-hidden="true"></div>
+    <div class="orb orb-a" aria-hidden="true"></div>
+    <div class="orb orb-b" aria-hidden="true"></div>
+    <div class="orb orb-c" aria-hidden="true"></div>
+
+    <main class="shell">
+      <header class="hero">
+        <p class="hero-badge">Powered by AI</p>
+        <h1 class="hero-title">
+          <span class="gradient-text">Spark</span> your next
+          <span class="gradient-text-alt">big idea</span>
+        </h1>
+        <p class="hero-sub">
+          Describe a niche, problem, or vibe — get a structured app concept with
+          audience, features, and a path to revenue.
+        </p>
+      </header>
+
+      <section class="panel" aria-labelledby="form-heading">
+        <h2 id="form-heading" class="visually-hidden">Generate an app idea</h2>
+        <form id="idea-form" class="idea-form" novalidate>
+          <label for="customPrompt" class="field-label">What should we build around?</label>
+          <textarea
+            id="customPrompt"
+            name="customPrompt"
+            class="prompt-input"
+            rows="5"
+            placeholder="e.g. A social app for plant parents in cities who swap cuttings and share care tips…"
+            required
+            maxlength="2000"
+          ></textarea>
+          <div class="form-footer">
+            <span class="char-hint" id="char-hint">0 / 2000</span>
+            <button type="submit" class="btn-generate" id="submit-btn">
+              <span class="btn-label">Generate idea</span>
+              <span class="btn-shine" aria-hidden="true"></span>
+            </button>
+          </div>
+        </form>
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+      </section>
+
+      <section
+        class="result-section"
+        id="result-section"
+        aria-live="polite"
+        aria-busy="false"
+        hidden
+      >
+        <div class="result-header">
+          <h2 class="result-title">Your app blueprint</h2>
+          <button type="button" class="btn-copy" id="copy-btn" hidden>
+            Copy
+          </button>
+        </div>
+        <div class="result-card">
+          <div class="result-loading" id="result-loading" hidden>
+            <div class="spinner" aria-hidden="true"></div>
+            <p>Drafting your concept…</p>
+          </div>
+          <article class="idea-output" id="idea-output" hidden></article>
+        </div>
+      </section>
+    </main>
+
+    <script src="/js/app.js" type="module"></script>
+  </body>
+</html>
