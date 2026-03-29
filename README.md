@@ -38,9 +38,8 @@ Open **http://localhost:3000** (or the `PORT` you set in `.env`).
 **Do not commit secrets.** This repo ignores `.env` via `.gitignore`; only `.env.example` is tracked.
 ## Deploy (optional)
 Host as a **Node web service** (e.g. [Render](https://render.com)): build `npm install`, start `npm start`, set environment variable **`OPENAI_API_KEY`** in the host dashboard. Use **`GET /health`** for health checks if your provider asks for a path.
-
-
-### :hammer_and_wrench: Languages and Tools :
+</br>
+## :hammer_and_wrench: Languages and Tools :
 <div>
   <img src="https://github.com/devicons/devicon/blob/master/icons/github/github-original-wordmark.svg" title="Github" **alt="Github" width="60" height="60"/>
   <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original-wordmark.svg" title="Git" **alt="Git" width="60" height="60"/>
@@ -51,7 +50,6 @@ Host as a **Node web service** (e.g. [Render](https://render.com)): build `npm i
   <img src="https://github.com/devicons/devicon/blob/master/icons/express/express-original-wordmark.svg" title="express" **alt="express" width="60" height="60"/>
   <img src="https://github.com/devicons/devicon/blob/master/icons/openapi/openapi-plain-wordmark.svg" title="openapi" **alt="openapi" width="60" height="60"/>
   <img src="https://cdn.jsdelivr.net/npm/simple-icons@16.14.0/icons/cursor.svg" **alt="cursor" width="60" height="60"/>
-  
 </div>
 
 </br>
