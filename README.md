@@ -48,7 +48,6 @@ Host as a **Node web service** (e.g. [Render](https://render.com)): build `npm i
      <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" title="JavaScript" alt="JavaScript" width="60" height="60"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/nodejs/nodejs-original-wordmark.svg" title="NodeJS" alt="NodeJS" width="60" height="60"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/express/express-original-wordmark.svg" title="express" **alt="express" width="60" height="60"/>
-  <img src="https://github.com/devicons/devicon/blob/master/icons/openapi/openapi-plain-wordmark.svg" title="openapi" **alt="openapi" width="60" height="60"/>
   <img src="https://cdn.jsdelivr.net/npm/simple-icons@16.14.0/icons/cursor.svg" **alt="cursor" width="60" height="60"/>
 </div>
 
