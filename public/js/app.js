@@ -90,7 +90,23 @@ form.addEventListener("submit", async (e) => {
       body: JSON.stringify({ customPrompt }),
     });
 
-    const data = await res.json().catch(() => ({}));
+    const raw = await res.text();
+    let data = {};
+    try {
+      data = raw ? JSON.parse(raw) : {};
+    } catch {
+      setError(
+        `Server returned an unexpected response (${res.status}). Are you opening this app via http://localhost — not as a saved HTML file?`,
+      );
+      resultLoading.hidden = true;
+      resultLoading.classList.remove("is-overlay");
+      if (!hadIdea) {
+        ideaOutput.hidden = true;
+        copyBtn.hidden = true;
+        resultSection.hidden = true;
+      }
+      return;
+    }
 
     if (!res.ok || !data.success) {
       setError(data.error || `Something went wrong (${res.status}). Try again.`);

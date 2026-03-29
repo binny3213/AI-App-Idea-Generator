@@ -1,5 +1,5 @@
 import express from "express";
-import OpenAI from "openai";
+import OpenAI, { APIError } from "openai";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -37,6 +37,11 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
 // routes
+
+// For platforms like Render (health checks)
+app.get("/health", (_req, res) => {
+  res.status(200).send("ok");
+});
 
 // Route: Home page
 app.get("/", (req, res) => {
@@ -86,15 +91,44 @@ app.post("/generate", async (req, res) => {
       temperature: 0.9,
       max_tokens: 1000,
     });
-    const idea = response.choices[0].message.content;
+    const idea = response.choices?.[0]?.message?.content;
+    if (!idea) {
+      return res.status(502).json({
+        success: false,
+        error: "The model returned an empty reply. Try again in a moment.",
+      });
+    }
     res.json({
       success: true,
       idea,
     });
   } catch (err) {
-    return res.status(500).json({
+    console.error("[/generate]", err);
+
+    let httpStatus = 500;
+    let message = err?.message || "Something went wrong";
+
+    if (err instanceof APIError && err.status) {
+      httpStatus = err.status;
+      if (err.status === 401) {
+        message =
+          "Invalid OpenAI API key. Set OPENAI_API_KEY in .env locally, or in your host’s environment variables.";
+      } else if (err.status === 429) {
+        message =
+          "OpenAI quota or rate limit exceeded. Add billing or credits at https://platform.openai.com/account/billing , then try again.";
+      } else if (err.status === 402) {
+        message =
+          "OpenAI billing issue (for example, no payment method or insufficient balance). Check https://platform.openai.com/account/billing";
+      }
+    }
+
+    if (httpStatus < 400 || httpStatus >= 600) {
+      httpStatus = 500;
+    }
+
+    return res.status(httpStatus).json({
       success: false,
-      error: err.message,
+      error: message,
     });
   }
 });
